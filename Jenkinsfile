@@ -3,7 +3,7 @@ pipeline {
         label 'ansible'
     }
 
-    trigger {
+    triggers {
         git branch: 'master', url: 'https://code.engpro.totvs.com.br/engpro/myapp'
     }
 
