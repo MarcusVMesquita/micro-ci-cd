@@ -3,11 +3,13 @@
 
   tools:
   
-  - name: Rundeck
+  - name: Rundeck   
     url: http://rundeck.engpro.totvs.com.br
     topics:
+      what is:
+        - "O que é"
       used_for:
-        - "Agentamento de tarefa"
+        - "Agendamento de tarefa"
         - "Self-service Operation"
         - "Execução de tarefas remotamente via Interface Web"
       architecture:
@@ -20,6 +22,8 @@
 
   - name: "Ansible"    
     topics:
+      what is:
+        - "O que é"
       used_for:
         - "Automação de tarefas"
         - "Gerenciamento de Configuração"
