@@ -20,8 +20,6 @@
       group: root
       mode: 644
 
-  - name: Kill actual myapp Container
-    command: docker service rm myapp_myapp && sleep 10
   
   - name: "Deploy myapp stack"
     command: docker stack deploy -c ~/myapp-compose.yml myapp
@@ -33,3 +31,6 @@
     with_items:
       - "~/myapp-build"
       - "~/myapp-compose"
+
+  - name: Kill actual myapp Container
+    command: for docker in `docker ps | grep myapp | awk '{print $1}'`; do docker kill $docker; done
