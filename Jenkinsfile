@@ -3,10 +3,6 @@ pipeline {
         label 'ansible'
     }
 
-    triggers {
-        git branch: 'master', url: 'https://code.engpro.totvs.com.br/engpro/myapp'
-    }
-
     options{
         buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '1'))
     }
