@@ -1,0 +1,37 @@
+---
+- theme: "Ferramentas de Automacao - Equipe DevOps"
+
+  tools:
+  
+  - name: Rundeck
+    url: http://rundeck.engpro.totvs.com.br
+    topics:
+      used_for:
+        - "Agentamento de tarefa"
+        - "Self-service Operation"
+        - "Execução de tarefas remotamente via Interface Web"
+      architecture:
+        - "Server"
+        - "Comunicação entre node - server"
+        - "Integração com Windows"
+      demo:
+        - "Execução remota de comandos em massa"
+        - "Criação de um job simples"
+
+  - name: "Ansible"    
+    topics:
+      used_for:
+        - "Automação de tarefas"
+        - "Gerenciamento de Configuração"
+        - "Deploy"
+      architecture:
+        - "Server"
+        - "Comunicação entre node - server"
+      some_modules:
+        - "template"
+        - "apt"
+        - "file"
+      demo:
+        - "Preparação de uma nova máquina para add ao cluster do Swarm da Engenharia"
+
+  - name: "Jenkins"

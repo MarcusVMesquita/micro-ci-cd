@@ -1,0 +1,32 @@
+---
+- hosts: goomba.m.engpro.totvs.com.br
+  remote_user: root
+
+  tasks:
+
+  - name: "Copy necessary files for build custom images for myapp "
+    copy:
+      src: "myapp-build"
+      dest:  ~/
+
+  - name: "Build images"
+    shell: docker build -t myapp-nginx ~/myapp-build/
+
+  - name: "Copy compose file to remote host"
+    template:
+      src: "myapp-compose.yml"
+      dest: "~/myapp-compose.yml"
+      owner: root
+      group: root
+      mode: 644
+
+  - name: "Deploy myapp stack"
+    command: docker stack deploy -c ~/myapp-compose.yml myapp
+
+  - name: "Remove files used for deploy myapp from remote host"
+    file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+      - "~/myapp-build"
+      - "~/myapp-compose"
