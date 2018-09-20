@@ -3,10 +3,6 @@ pipeline {
         label 'ansible'
     }
 
-    triggers {
-        pollSCM('* * * * *')
-    }
-
     options{
         buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '1'))
     }
