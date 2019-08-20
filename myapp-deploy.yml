@@ -9,9 +9,6 @@
       src: "myapp-build"
       dest:  ~/
 
-  - name: "Build images"
-    shell: docker build -t myapp-nginx ~/myapp-build/
-
   - name: "Copy compose file to remote host"
     template:
       src: "myapp-compose.yml"
