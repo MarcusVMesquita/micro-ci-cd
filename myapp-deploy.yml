@@ -4,11 +4,6 @@
 
   tasks:
 
-  - name: "Copy necessary files for build custom images for myapp "
-    copy:
-      src: "myapp-build"
-      dest:  ~/
-
   - name: "Copy compose file to remote host"
     template:
       src: "myapp-compose.yml"
@@ -26,7 +21,6 @@
       path: "{{ item }}"
       state: absent
     with_items:
-      - "~/myapp-build"
       - "~/myapp-compose"
 
   - name: Kill actual myapp Container
