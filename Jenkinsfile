@@ -49,7 +49,7 @@ pipeline {
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']
                 ]){
                     sh '''
-                        docker login -u $USERNAME -p $PASSWORD https://hub.docker.com/
+                        docker login -u $USERNAME -p $PASSWORD
                         docker push marcusvmesquita/myapp:1.0
                         docker push marcusvmesquita/myapp:latest
 
