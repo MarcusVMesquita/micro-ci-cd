@@ -22,9 +22,10 @@ pipeline {
                 sh '''
                     docker run --rm -d --name myapp-test -p 8099:80 marcusvmesquita/myapp:latest
                     
-                    sleep 20
-                    
-                    if [ `curl http://localhost:8099` == true ]; then 
+                    sleep 15
+                    curl http://localhost:8099
+
+                    if [[ $? -eq 0 ]]; then 
                         
                         echo "Test executed with success"
                         docker tag marcusvmesquita/myapp:latest marcusvmesquita/myapp:1.0
