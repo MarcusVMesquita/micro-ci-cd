@@ -24,7 +24,7 @@ pipeline {
                     
                     sleep 20
                     
-                    if [ `http://localhost:8099` ]; then 
+                    if [ `curl http://localhost:8099` ]; then 
                         
                         echo "Test executed with success"
                         docker tag marcusvmesquita/myapp:latest marcusvmesquita/myapp:1.0
