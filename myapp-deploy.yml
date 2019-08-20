@@ -22,6 +22,3 @@
       state: absent
     with_items:
       - "~/myapp-compose"
-
-  - name: Kill actual myapp Container
-    raw: for docker in `docker ps | grep myapp | awk '{print $1}'`; do docker kill $docker; done
