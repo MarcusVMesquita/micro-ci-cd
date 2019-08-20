@@ -12,7 +12,7 @@ pipeline {
         stage("Build image"){
             steps {
                 sh '''
-                    docker build ./myapp-build -t marcusvmesquita/myapp
+                    docker build ./myapp-build -t marcusvmesquita/myapp:latest
                 '''
             }
         }
@@ -20,12 +20,40 @@ pipeline {
         stage("Test image"){
             steps {
                 sh '''
-                    docker run --rm -d -p 8080:80 marcusvmesquita/myapp
+                    docker run --rm -d --name myapp-test -p 8080:80 marcusvmesquita/myapp:latest
                     
                     sleep 20
                     
-                    [[ `curl http://localhost:8080` == true ]] && echo "Success" || Failed
+                    if [ `http://localhost:8080` ]; then 
+                        
+                        echo "Test executed with success"
+                        docker tag marcusvmesquita/myapp:latest marcusvmesquita/myapp:1.0
+                        docker kill myapp-test
+                        exit 0
+                    
+                    else
+                    
+                        echo "An error occured while testing marcusvmesquita/myapp"
+                        docker kill myapp-test
+                        exit 1
+                    
+                    fi
                 '''
+            }
+        }
+
+        stage("Push image to Docker Hub"){
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'docker_hub_credentials',
+                    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']
+                ]){
+                    sh '''
+                        docker login -u $USERNAME -p $PASSWORD
+                        docker push marcusvmesquita/myapp:1.0
+                        docker push marcusvmesquita/myapp:latest
+
+                    '''
+                }
             }
         }
         
