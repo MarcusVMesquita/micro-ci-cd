@@ -20,11 +20,11 @@ pipeline {
         stage("Test image"){
             steps {
                 sh '''
-                    docker run --rm -d --name myapp-test -p 8080:80 marcusvmesquita/myapp:latest
+                    docker run --rm -d --name myapp-test -p 8099:80 marcusvmesquita/myapp:latest
                     
                     sleep 20
                     
-                    if [ `http://localhost:8080` ]; then 
+                    if [ `http://localhost:8099` ]; then 
                         
                         echo "Test executed with success"
                         docker tag marcusvmesquita/myapp:latest marcusvmesquita/myapp:1.0
