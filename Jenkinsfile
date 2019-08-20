@@ -12,7 +12,7 @@ pipeline {
         stage("Build image"){
             steps {
                 sh '''
-                    docker build ./myapp-build -t marcusvmesquita/myapp:latest
+                    docker build --no-cache ./myapp-build -t marcusvmesquita/myapp:latest
                 '''
             }
         }
