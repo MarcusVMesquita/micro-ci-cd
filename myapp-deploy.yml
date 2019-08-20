@@ -1,5 +1,5 @@
 ---
-- hosts: goomba.m.engpro.totvs.com.br
+- hosts: "{{ target_hosts | default('all') }}"
   remote_user: root
 
   tasks:
